@@ -1,0 +1,36 @@
+.p10{
+    padding:10px
+}
+.p20{
+  padding:20px
+}
+
+.normal {
+    background-color: grey;
+}
+
+.dragArea{
+     min-height: 616px;	
+}
+
+.sortable-chosen {
+    opacity: 0.7;
+    background-color:#dcdcdc;
+}
+.sortable-ghost {
+    background-color:#dcdcdc;
+}
+
+.del {
+    cursor: pointer;
+    color: white;
+	position: absolute;
+	top: 3px;
+	left: 164px;
+	width: 38px;
+	background-color: black;
+	width: 18px;
+	height: 21px;
+	padding: 0px 3px;
+
+}
