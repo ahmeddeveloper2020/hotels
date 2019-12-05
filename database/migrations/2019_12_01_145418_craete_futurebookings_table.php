@@ -19,8 +19,8 @@ class CraeteFuturebookingsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->integer('duration');
-            $table->integer('status');
-            $table->integer('classroom_id');
+            // $table->integer('status');
+            $table->integer('room_id');
             $table->timestamps();
         });
     }

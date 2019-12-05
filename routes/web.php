@@ -43,3 +43,15 @@ Route::prefix('admin')->group(function () {
         Route::get('room/edit/{id}', 'RoomController@edit');
         Route::post('room/update', 'RoomController@update');
         Route::get('room/destroy/{id}', 'RoomController@destroy');
+
+        Route::get('futurebooking/create', 'FuturebookingController@create');
+        Route::post('futurebooking/store', 'FuturebookingController@store');
+        Route::get('futurebooking/edit/{id}', 'FuturebookingController@edit');
+        Route::post('futurebooking/update', 'FuturebookingController@update');
+        Route::get('futurebooking/destroy/{id}', 'FuturebookingController@destroy');
+
+        Route::get('booking/create', 'BookingController@create');
+        Route::post('booking/store', 'BookingController@store');
+        Route::get('booking/edit/{id}', 'BookingController@edit');
+        Route::post('booking/update', 'BookingController@update');
+        Route::get('booking/destroy/{id}', 'BookingController@destroy');

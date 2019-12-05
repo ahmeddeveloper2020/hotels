@@ -4,7 +4,7 @@
 <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header"> بيانات الغرف</h1>
+                    <h1 class="page-header">الحجز </h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -12,11 +12,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
-                        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#create-room">
+                        <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#create-booking">
                         اضافة
 </button>
 
-                        @include('admin.room.create',['id' => 'create-room'])
+                        @include('admin.booking.create',['id' => 'create-booking'])
                         <div class="panel-body">
                             <div class="table-responsive">
                                 <table class="table table-striped table-bordered table-hover">
@@ -24,10 +24,11 @@
                                         <tr>
                                             <th>الرقم</th>
                                             <th>الاسم</th>
-                                            <th>الفئة</th>
-                                            <th>السعر</th>
-                                            <th>الحالة </th>
-                                            <th>الطابق </th>
+                                            <th>الغرفة</th>
+                                            <th>من تاريخ</th>
+                                            <th>الي تاريخ</th>
+                                            <th>المدة </th>
+                                            <th>السعر الكلي</th>
                                             
                                         </tr>
                                     </thead>
@@ -35,16 +36,16 @@
                                         <tr>
 										@foreach($data as $d)
                                             <td>{{$loop->iteration}}</td>
-                                            <td>{{$d->name}}</td>
-                                            <td>{{$d->roomclass->name}}</td>
-                                            <td>{{$d->price}}</td>
-                                            <td>{{$d->status == '0' ? 'متاح':'غير متاح'}}</td>
-                                            <td>{{$d->floor->name}}</td>
+                                            <td>{{$d->visiter->name}}</td>
+                                            <td>{{$d->room->name}}</td>
+                                            <td>{{$d->start_date}}</td>
+                                            <td>{{$d->end_date}}</td>
+                                            <td>{{$d->duration}}</td>
 											<td>
-                                            <a name="" id="" class="btn btn-warning" data-toggle="modal" data-target="#update-room-{{ $d->id }}" href="{{request()->root()}}/floor/room/{{$d->id}}" role="button">تعديل </a>
-                                            @include('admin.room.update',['id' => 'update-room-'.$d->id, 'edit' => $d])
+                                            <a name="" id="" class="btn btn-warning" data-toggle="modal" data-target="#update-booking-{{ $d->id }}" href="{{request()->root()}}/floor/booking/{{$d->id}}" role="button">تعديل </a>
+                                            @include('admin.booking.update',['id' => 'update-booking-'.$d->id, 'edit' => $d])
                                             </td>
-			                                <td><a name="" id="" class="btn btn-danger" href="{{request()->root()}}/room/destroy/{{$d->id}}" role="button">حذف </a></td>
+			                                <td><a name="" id="" class="btn btn-danger" href="{{request()->root()}}/booking/destroy/{{$d->id}}" role="button">حذف </a></td>
                                         
                                         </tr>
                                         @endforeach

@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\futurebooking;
+use App\Futurebooking;
+use App\Room;
+use App\Visiter;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class FuturebookingController extends Controller
@@ -24,7 +27,10 @@ class FuturebookingController extends Controller
      */
     public function create()
     {
-        //
+        $data=Futurebooking::with('room')->with('visiter')->get();
+        $room=Room::all();
+        $visiter=Visiter::all();
+        return view('admin.futurebooking.index',['data'=>$data,'visiter'=>$visiter,'room'=>$room]);
     }
 
     /**
@@ -35,16 +41,21 @@ class FuturebookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $duration=Carbon::parse($request->end_date)->diffInDays(Carbon::parse($request->start_date));
+        $request['duration'] =$duration;
+        // return $du;
+        // return $request->all();
+        Futurebooking::create($request->all());
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\futurebooking  $futurebooking
+     * @param  \App\Futurebooking  $Roomclass
      * @return \Illuminate\Http\Response
      */
-    public function show(futurebooking $futurebooking)
+    public function show(Roomclass $Roomclass)
     {
         //
     }
@@ -52,34 +63,41 @@ class FuturebookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\futurebooking  $futurebooking
+     * @param  \App\Futurebooking  $Roomclass
      * @return \Illuminate\Http\Response
      */
-    public function edit(futurebooking $futurebooking)
+    public function edit($id)
     {
-        //
+        $edit=Futurebooking::findOrFail($id);
+        return view('admin.futurebooking.update',['edit'=>$edit]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\futurebooking  $futurebooking
+     * @param  \App\Futurebooking  $Roomclass
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, futurebooking $futurebooking)
+    public function update(Request $request)
     {
-        //
+        $duration=Carbon::parse($request->end_date)->diffInDays(Carbon::parse($request->start_date));
+        $request['duration'] =$duration;
+        // return $request->all();
+        Futurebooking::where('id',$request->id)->update(['id'=>$request->id,'visiter_id'=>$request->visiter_id,'start_date'=>$request->start_date,'end_date'=>$request->end_date,'duration'=>$request->duration,'room_id'=>$request->room_id]);
+        return redirect()->action('FuturebookingController@create');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\futurebooking  $futurebooking
+     * @param  \App\Futurebooking  $Roomclass
      * @return \Illuminate\Http\Response
      */
-    public function destroy(futurebooking $futurebooking)
+    public function destroy($id)
     {
-        //
+        Futurebooking::where('id',$id)->delete();
+        return back();
     }
+    
 }

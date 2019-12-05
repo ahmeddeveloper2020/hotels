@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Futurebooking extends Model
 {
     protected $table="futurebookings";
-    protected $fillable =['name','visiter_id','start_date','end_date','duration','status','classroom_id'];
+    protected $fillable =['visiter_id','start_date','end_date','duration','room_id'];
     
-        public function roomclass()
+        public function room()
         {
-            return $this->belongsTo(Roomclass::class,'roomclass_id');
+            return $this->belongsTo(Room::class,'room_id');
         } 
         public function visiter()
         {

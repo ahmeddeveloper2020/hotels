@@ -2,12 +2,12 @@
 @section($id)
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           تعديل بيانات فئات الطوابق
+                           تعديل بيانات  الحجز
                         </div>
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <form role="form" action="{{request()->root()}}/futurebooking/update" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
+                                    <form role="form" action="{{request()->root()}}/booking/update" accept-charset="UTF-8" enctype="multipart/form-data" method="POST">
                   {{csrf_field()}}	
                   <input type="hidden" name="id" value="{{$edit->id}}">
                                     <div class="form-group">
